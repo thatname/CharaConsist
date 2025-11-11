@@ -6,9 +6,9 @@ import numpy as np
 import torch
 import copy
 
-from diffusers import FluxPipeline
-from diffusers.pipelines.flux.pipeline_flux import retrieve_timesteps, calculate_shift
-from diffusers.pipelines.flux.pipeline_output import FluxPipelineOutput
+from diffusers import ChromaPipeline
+from diffusers.pipelines.chroma.pipeline_chroma import retrieve_timesteps, calculate_shift
+from diffusers.pipelines.chroma.pipeline_output import ChromaPipelineOutput
 from diffusers.utils.torch_utils import randn_tensor
 
 from .attention_processor_characonsist import get_curr_fg_mask, get_cross_sim
@@ -36,7 +36,7 @@ def get_shared_fg_mask(id_fg_mask, curr_fg_mask, curr2id_argmax_indices, curr2id
     return id_share_fg_indices, curr_share_fg_indices
 
 
-class CharaConsistPipeline(FluxPipeline):
+class CharaConsistPipeline(ChromaPipeline):
     @torch.no_grad()
     def __call__(
         self,
@@ -297,6 +297,6 @@ class CharaConsistPipeline(FluxPipeline):
         if not return_dict:
             return (image, spatial_kwargs)
 
-        return FluxPipelineOutput(images=image)
+        return ChromaPipelineOutput(images=image)
 
 

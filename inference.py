@@ -29,7 +29,7 @@ from models.pipeline_characonsist import CharaConsistPipeline
 
 def init_model_mode_0():
     pipe = CharaConsistPipeline.from_pretrained(args.model_path, torch_dtype=torch.bfloat16)
-    pipe.to("cuda:0")
+    pipe.to("cuda")
     return pipe
 
 def init_model_mode_1():
